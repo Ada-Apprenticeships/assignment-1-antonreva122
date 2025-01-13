@@ -1,24 +1,39 @@
 function temperatureConversion(temperature, fromScale, toScale){
+    if (temperature === null || temperature === undefined || isNaN(temperature)) {
+        throw new Error(' Invalid Temperature. Please provide a numeric value.');
+    }
 
-// TODO: Validate the input:
-//        - Check if the temperature is null, undefined, or a non-numeric string. If so, throw an error "Invalid temperature input".
-//        - Convert the temperature to a number.
-//        - Normalise fromScale and toScale to uppercase.
-//        - Check if fromScale and toScale are valid ( e.g. 'C', 'F'). If not, throw an error "Invalid conversion type or input scale".
+    fromScale = fromScale.toUpperCase();
+    toScale = toScale.toUpperCase();
 
-// TODO: Define helper functions for the conversions:
-//        - toFahrenheit(celsius): Converts Celsius to Fahrenheit.
-//        - toCelsius(fahrenheit): Converts Fahrenheit to Celsius.
-//        
-// TODO: Implement the conversion logic:
-//        - Use conditional logic to handle different toScale values (e.g. 'C', 'F').
-//        - Within each condition, handle conversions from different fromScale values (e.g. 'C', 'F') to the target toScale.
-//        - Use the helper functions to perform the actual conversions.
+    const validScales = ['C', 'F', 'K'];
+    if (!validScales.includes(fromScale) || !validScales.includes(toScale)) {
+        throw new Error('Invalid scale. Use "C" for Celsius, "F" for Fahrenheit, or "K" for Kelvin.');
+    }
 
+    // Convert the temperature based on the scales
+    if (fromScale === 'C') {
+        if (toScale === 'F') {
+            return (temperature * 9/5) + 32; // Celsius to Fahrenheit
+        } else if (toScale === 'K') {
+            return temperature + 273.15; // Celsius to Kelvin
+        }
+    } else if (fromScale === 'F') {
+        if (toScale === 'C') {
+            return (temperature - 32) * 5/9; // Fahrenheit to Celsius
+        } else if (toScale === 'K') {
+            return (temperature - 32) * 5/9 + 273.15; // Fahrenheit to Kelvin
+        }
+    } else if (fromScale === 'K') {
+        if (toScale === 'C') {
+            return temperature - 273.15; // Kelvin to Celsius
+        } else if (toScale === 'F') {
+            return (temperature - 273.15) * 9/5 + 32; // Kelvin to Fahrenheit
+        }
+    }
 
+    return temperature; // If the original scale and desired scale are the same, Return the original temperature
 }
-
-
 
 export default temperatureConversion;
 
