@@ -1,56 +1,49 @@
 
 function shuffleAndDeal(numPlayers, cardsPerPlayer , numDecks = 1) {
-    function createDeck() {
-        const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-        const ranks = [
-            'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
-            'Jack', 'Queen', 'King'
-        ];
-        const deck = [];
+    const suits = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
+    const ranks = [
+        'Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 
+        'Jack', 'Queen', 'King'
+    ];
+    const deck = [];
 
-        for (let deckIndex = 0; deckIndex < numDecks; deckIndex++) {
-            for (const suit of suits) {
-                for (const rank of ranks) {
-                    deck.push(`${rank} of ${suit}`);
-                }
+    // Create the deck
+    for (let deckIndex = 0; deckIndex < numDecks; deckIndex++) {
+        for (const suit of suits) {
+            for (const rank of ranks) {
+                deck.push(`${rank} of ${suit}`); // once card is created, it is pushed into the deck array
             }
         }
-        return deck;
     }
 
-    function shuffle(deck) {
-        for (let i = deck.length - 1; i > 0; i--) {
-            const randomIndex = Math.floor(Math.random() * (i + 1));
-            [deck[i], deck[randomIndex]] = [deck[randomIndex], deck[i]];
-        }
+    // Shuffle the deck
+    for (let i = deck.length - 1; i > 0; i--) {
+        const randomIndex = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[randomIndex]] = [deck[randomIndex], deck[i]]; // This is a Fisher-Yates shuffle algorithm
     }
 
-    function dealCards(deck, numPlayers, cardsPerPlayer) {
-        const totalCardsNeeded = numPlayers * cardsPerPlayer;
+    // Deal the cards
+    const totalCardsNeeded = numPlayers * cardsPerPlayer;
 
-        if (numPlayers <= 0 || cardsPerPlayer <= 0) {
-            throw new Error('Number of players and cards per player must be positive integers.');
-        }
-        if (totalCardsNeeded > deck.length) {
-            throw new Error('Not enough cards in the deck to deal.');
-        }
-
-        const hands = Array.from({ length: numPlayers }, () => []);
-        for (let i = 0; i < totalCardsNeeded; i++) {
-            hands[i % numPlayers].push(deck.pop());
-        }
-        return hands;
+    if (numPlayers <= 0 || cardsPerPlayer <= 0) {
+        throw new Error('Number of players and cards per player must be positive integers.');
+    }
+    if (totalCardsNeeded > deck.length) {
+        throw new Error('Not enough cards in the deck to deal.');
     }
 
-    const deck = createDeck();
-    shuffle(deck);
-    return dealCards(deck, numPlayers, cardsPerPlayer);
+    const hands = Array.from({ length: numPlayers }, () => []);
+    for (let i = 0; i < totalCardsNeeded; i++) {
+        hands[i % numPlayers].push(deck.pop());
+    }
+    return hands;
+
 }
+// shuffleAndDeal(1,5)
 
 export default shuffleAndDeal;
 
 
-// shuffleAndDeal(2,5)
 // TODO: Write a function shuffleAndDeal(numPlayers, cardsPerPlayer, numDecks = 1)
 // that simulates shuffling and dealing a deck of cards.
 
