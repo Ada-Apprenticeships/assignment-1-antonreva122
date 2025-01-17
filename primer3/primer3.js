@@ -1,5 +1,4 @@
 function createLinkedList(posts) {
-  // Return null if the input is not an array or if it's an empty array
   if (!Array.isArray(posts) || posts.length === 0) {
     return null;
   }
@@ -49,7 +48,7 @@ function searchSocialMediaFeed(feed, keyword) {
       results.push(current.data); // Add the matching post to results
     }
 
-    current = current.next; // Move to the next node
+    current = current.next; 
   }
 
   return results; // Return the array of matching posts

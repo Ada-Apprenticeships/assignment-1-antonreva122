@@ -8,7 +8,7 @@ function temperatureConversion(temperature, fromScale, toScale){
     toScale = String(toScale).toUpperCase();
 
     const validScales = ['C', 'F', 'K'];
-    if (!validScales.includes(fromScale) || !validScales.includes(toScale)) { // Bang operator is opposite of whats true
+    if (!validScales.includes(fromScale) || !validScales.includes(toScale)) { 
         throw new Error('Invalid scale. Use "C" for Celsius, "F" for Fahrenheit, or "K" for Kelvin.');
     }
 
