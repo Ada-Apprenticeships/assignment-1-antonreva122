@@ -16,7 +16,7 @@ try {
   inventory.addProduct(tshirt);
   inventory.addProduct(laptop);
   inventory.updateQuantity("A123", 50);
-  const retrievedProduct = inventory.getProduct("C789");
+  const retrievedProduct = inventory.getProduct("A124");
   console.log(retrievedProduct);
   inventory.removeProduct("A123");
 } catch (error) {

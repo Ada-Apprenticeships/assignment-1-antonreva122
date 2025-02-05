@@ -8,7 +8,7 @@ function temperatureConversion(temperature, fromScale, toScale){
     toScale = String(toScale).toUpperCase();
 
     const validScales = ['C', 'F', 'K'];
-    if (!validScales.includes(fromScale) || !validScales.includes(toScale)) { 
+    if (!validScales.includes(fromScale) || !validScales.includes(toScale)) { // Bang operator is opposite of whats true
         throw new Error('Invalid scale. Use "C" for Celsius, "F" for Fahrenheit, or "K" for Kelvin.');
     }
 
@@ -36,6 +36,7 @@ function temperatureConversion(temperature, fromScale, toScale){
     return numTemp; // If the original scale and desired scale are the same, Return the original temperature
 }
 
+console.log(temperatureConversion(70, 'C', 'F'));
 export default temperatureConversion;
 
 

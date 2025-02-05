@@ -39,7 +39,8 @@ function shuffleAndDeal(numPlayers, cardsPerPlayer , numDecks = 1) {
     return hands;
 
 }
-// shuffleAndDeal(1,5)
+
+console.log(shuffleAndDeal(2,5));
 
 export default shuffleAndDeal;
 
